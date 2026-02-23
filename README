@@ -1,0 +1,18 @@
+**Treniranje sloj po sloj (Forward Thinking) na MNIST skupu**
+
+**Ideja projekta**
+Ideja projekta je implementacija pristupa treniranja neuronske mreže sloj-po-sloj (Forward Thinking), gde se mreža gradi postepeno. Najpre se trenira jednostavna mreža sa jednim skrivenim slojem, a zatim se dodaju novi slojevi. Prethodno naučeni slojevi se zamrzavaju, dok se trenira samo novi sloj i izlazni klasifikator. Proces se ponavlja dokle god dodavanje sloja poboljšava validacionu tačnost.
+
+**Cilj projekta**
+Cilj je demonstrirati kako se duboka neuronska mreža može trenirati inkrementalno i analizirati uticaj povećanja dubine mreže na tačnost i vreme treniranja.
+
+**Korišćeno u projektu**
+Projekat je realizovan u Python-u koristeći PyTorch biblioteku. Kao dataset korišćen je MNIST skup ručno pisanih cifara. Implementirana je potpuno povezana neuronska mreža sa Linear slojevima i ReLU aktivacijom u skrivenim slojevima. Za funkciju greške korišćena je CrossEntropyLoss, a za optimizaciju Adam optimizer. Podaci su podeljeni na trening, validacioni i test skup, uz primenu early stopping mehanizma.
+
+**Način testiranja i poređenja**
+Model je treniran iterativnim dodavanjem skrivenih slojeva, pri čemu se nakon svakog dodavanja meri validaciona tačnost. Upoređeni su rezultati za različite maksimalne dubine mreže.
+Za **max_layers = 3**, model postiže validacionu tačnost oko **0.9787** i test tačnost **0.9781**.
+Za **max_layers = 6**, primećeno je da dodatni slojevi nakon trećeg ili četvrtog donose zanemarljivo poboljšanje tačnosti (oko **0.977–0.979**), dok vreme treniranja raste.
+
+**Rezultati i zaključak**
+Rezultati pokazuju da Forward Thinking pristup omogućava stabilno treniranje mreže uz visoku tačnost (oko 97–98% na MNIST-u). Povećanje dubine mreže iznad nekoliko slojeva ne donosi značajno poboljšanje performansi, ali povećava vreme treniranja. Zbog toga je izbor **max_layers = 3** praktičan kompromis između tačnosti i efikasnosti.
